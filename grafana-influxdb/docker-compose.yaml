@@ -1,14 +1,14 @@
 version: "2"
 services:
   influxdb_svc:
-    image: influxdb
+    image: influxdb:1.3.5
     container_name: influxdb_container
     ports:
       - 8083:8083
       - 8086:8086
     restart: always
   telegraf_svc:
-    image: telegraf
+    image: telegraf:1.4.0
     container_name: telegraf_container
     ports:
       - "8092:8092/udp"
@@ -22,7 +22,7 @@ services:
     volumes:
       - ./persistence/telegraf.conf:/etc/telegraf/telegraf.conf:ro
   grafana_svc:
-    image: grafana/grafana
+    image: grafana/grafana:5.0.1
     container_name: grafana_container
     restart: always
     ports:
