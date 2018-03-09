@@ -80,7 +80,7 @@
       "name": "CPU",
       "queries": [
         {
-          "query": "SELECT mean(\"usage_user\") AS \"mean_usage_user\" FROM \"telegraf\".\"autogen\".\"cpu\" WHERE time \u003e :dashboardTime: GROUP BY :interval:",
+          "query": "SELECT mean(\"usage_user\") AS \"mean_usage_user\" FROM \"telegraf\".\"autogen\".\"cpu\" WHERE time \u003e :dashboardTime: AND \"cpu\"!='cpu-total' GROUP BY :interval:, \"cpu\"",
           "queryConfig": {
             "database": "telegraf",
             "measurement": "cpu",
@@ -94,12 +94,14 @@
               }
             ],
             "tags": {
-              
+              "cpu": [
+                "cpu-total"
+              ]
             },
             "groupBy": {
               "time": "auto",
               "tags": [
-                
+                "cpu"
               ]
             },
             "areTagsAccepted": false,
