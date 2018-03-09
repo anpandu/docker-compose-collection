@@ -1,0 +1,67 @@
+version: '3'
+services:
+  telegraf:
+    image: telegraf:1.4.0
+    volumes:
+      - ./persistence/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    links:
+      - influxdb
+    ports:
+      - "8092:8092/udp"
+      - "8094:8094"
+      - "8125:8125/udp"
+  influxdb:
+    image: influxdb:1.3.5
+    volumes:
+      - ./persistence/influxdb:/var/lib/influxdb
+    ports:
+      - "8086:8086"
+  chronograf:
+    image: chronograf:1.3.8
+    environment:
+      INFLUXDB_URL: http://influxdb:8086
+      KAPACITOR_URL: http://kapacitor:9092
+    ports:
+      - "8888:8888"
+    links:
+      - influxdb
+      - kapacitor
+  kapacitor:
+    image: kapacitor:1.3.3
+    environment:
+      KAPACITOR_HOSTNAME: kapacitor
+      KAPACITOR_INFLUXDB_0_URLS_0: http://influxdb:8086
+    links:
+      - influxdb
+    ports:
+      - "9092:9092"
+  influxdb-cli:
+    image: influxdb:1.3.5
+    entrypoint:
+      - influx
+      - -host
+      - influxdb
+    links:
+      - influxdb
+  kapacitor-cli:
+    image: kapacitor:1.3.3
+    entrypoint: bash
+    environment:
+      KAPACITOR_URL: http://kapacitor:9092
+    links:
+      - kapacitor
+  python_alpine:
+    image: python:alpine
+    environment:
+      CHRONOGRAF_URL: http://chronograf:8888
+      DASHBOARD_DATA_FILES: basic-metrics.json
+    volumes:
+      - ./persistence/chronograf:/tmp
+    depends_on:
+      - chronograf
+    links:
+      - chronograf
+    command: python /tmp/upload-dashboard.py
+#
+# docker-compose run influxdb-cli
+# docker-compose run kapacitor-cli

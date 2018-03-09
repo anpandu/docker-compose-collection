@@ -1,0 +1,234 @@
+{
+  "id": 1,
+  "cells": [
+    {
+      "i": "a2ee3e10-a98b-4b34-8500-8bda6fc6bdec",
+      "x": 0,
+      "y": 6,
+      "w": 12,
+      "h": 3,
+      "name": "Disk",
+      "queries": [
+        {
+          "query": "SELECT mean(\"free\")/1000000000 AS \"mean_free\" FROM \"telegraf\".\"autogen\".\"disk\" WHERE time \u003e :dashboardTime: AND \"device\"='xvda1' GROUP BY :interval:",
+          "queryConfig": {
+            "database": "",
+            "measurement": "",
+            "retentionPolicy": "",
+            "fields": [
+              
+            ],
+            "tags": {
+              
+            },
+            "groupBy": {
+              "time": "",
+              "tags": [
+                
+              ]
+            },
+            "areTagsAccepted": false,
+            "rawText": "SELECT mean(\"free\")/1000000000 AS \"mean_free\" FROM \"telegraf\".\"autogen\".\"disk\" WHERE time \u003e :dashboardTime: AND \"device\"='xvda1' GROUP BY :interval:",
+            "range": null
+          }
+        }
+      ],
+      "axes": {
+        "x": {
+          "bounds": [
+            
+          ],
+          "label": "",
+          "prefix": "",
+          "suffix": "",
+          "base": "10",
+          "scale": "linear"
+        },
+        "y": {
+          "bounds": [
+            "",
+            ""
+          ],
+          "label": "free (GB)",
+          "prefix": "",
+          "suffix": "",
+          "base": "10",
+          "scale": "linear"
+        },
+        "y2": {
+          "bounds": [
+            
+          ],
+          "label": "",
+          "prefix": "",
+          "suffix": "",
+          "base": "10",
+          "scale": "linear"
+        }
+      },
+      "type": "line",
+      "links": {
+        "self": "/chronograf/v1/dashboards/1/cells/a2ee3e10-a98b-4b34-8500-8bda6fc6bdec"
+      }
+    },
+    {
+      "i": "8e92b8df-bc55-49f9-93e5-ccede980facd",
+      "x": 0,
+      "y": 3,
+      "w": 12,
+      "h": 3,
+      "name": "CPU",
+      "queries": [
+        {
+          "query": "SELECT mean(\"usage_user\") AS \"mean_usage_user\" FROM \"telegraf\".\"autogen\".\"cpu\" WHERE time \u003e :dashboardTime: GROUP BY :interval:",
+          "queryConfig": {
+            "database": "telegraf",
+            "measurement": "cpu",
+            "retentionPolicy": "autogen",
+            "fields": [
+              {
+                "field": "usage_user",
+                "funcs": [
+                  "mean"
+                ]
+              }
+            ],
+            "tags": {
+              
+            },
+            "groupBy": {
+              "time": "auto",
+              "tags": [
+                
+              ]
+            },
+            "areTagsAccepted": false,
+            "rawText": null,
+            "range": null
+          }
+        }
+      ],
+      "axes": {
+        "x": {
+          "bounds": [
+            
+          ],
+          "label": "",
+          "prefix": "",
+          "suffix": "",
+          "base": "10",
+          "scale": "linear"
+        },
+        "y": {
+          "bounds": [
+            "",
+            ""
+          ],
+          "label": "usage",
+          "prefix": "",
+          "suffix": "",
+          "base": "10",
+          "scale": "linear"
+        },
+        "y2": {
+          "bounds": [
+            
+          ],
+          "label": "",
+          "prefix": "",
+          "suffix": "",
+          "base": "10",
+          "scale": "linear"
+        }
+      },
+      "type": "line",
+      "links": {
+        "self": "/chronograf/v1/dashboards/1/cells/8e92b8df-bc55-49f9-93e5-ccede980facd"
+      }
+    },
+    {
+      "i": "25002e1d-d96c-4c1b-8b92-9248eea824d5",
+      "x": 0,
+      "y": 0,
+      "w": 12,
+      "h": 3,
+      "name": "Memory",
+      "queries": [
+        {
+          "query": "SELECT mean(\"used_percent\") AS \"mean_used_percent\" FROM \"telegraf\".\"autogen\".\"mem\" WHERE time \u003e :dashboardTime: GROUP BY :interval:",
+          "queryConfig": {
+            "database": "telegraf",
+            "measurement": "mem",
+            "retentionPolicy": "autogen",
+            "fields": [
+              {
+                "field": "used_percent",
+                "funcs": [
+                  "mean"
+                ]
+              }
+            ],
+            "tags": {
+              
+            },
+            "groupBy": {
+              "time": "auto",
+              "tags": [
+                
+              ]
+            },
+            "areTagsAccepted": false,
+            "rawText": null,
+            "range": null
+          }
+        }
+      ],
+      "axes": {
+        "x": {
+          "bounds": [
+            
+          ],
+          "label": "",
+          "prefix": "",
+          "suffix": "",
+          "base": "10",
+          "scale": "linear"
+        },
+        "y": {
+          "bounds": [
+            "",
+            ""
+          ],
+          "label": "usage (%)",
+          "prefix": "",
+          "suffix": "",
+          "base": "10",
+          "scale": "linear"
+        },
+        "y2": {
+          "bounds": [
+            
+          ],
+          "label": "",
+          "prefix": "",
+          "suffix": "",
+          "base": "10",
+          "scale": "linear"
+        }
+      },
+      "type": "line-stacked",
+      "links": {
+        "self": "/chronograf/v1/dashboards/1/cells/25002e1d-d96c-4c1b-8b92-9248eea824d5"
+      }
+    }
+  ],
+  "templates": [
+    
+  ],
+  "name": "Basic Metrics",
+  "links": {
+    "self": "/chronograf/v1/dashboards/1",
+    "cells": "/chronograf/v1/dashboards/1/cells",
+    "templates": "/chronograf/v1/dashboards/1/templates"
+  }
+}
