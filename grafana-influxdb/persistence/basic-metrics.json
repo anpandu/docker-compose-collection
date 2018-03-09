@@ -174,14 +174,19 @@
       "steppedLine": false,
       "targets": [
         {
-          "$$hashKey": "object:192",
-          "alias": "usage user (%)",
+          "alias": "",
           "groupBy": [
             {
               "params": [
                 "$__interval"
               ],
               "type": "time"
+            },
+            {
+              "params": [
+                "cpu"
+              ],
+              "type": "tag"
             },
             {
               "params": [
@@ -212,7 +217,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "cpu",
+              "operator": "!=",
+              "value": "cpu-total"
+            }
+          ]
         }
       ],
       "thresholds": [],
