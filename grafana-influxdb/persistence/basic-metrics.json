@@ -57,7 +57,6 @@
       "steppedLine": false,
       "targets": [
         {
-          "$$hashKey": "object:126",
           "alias": "used (%)",
           "groupBy": [
             {
@@ -302,7 +301,6 @@
       "steppedLine": false,
       "targets": [
         {
-          "$$hashKey": "object:258",
           "alias": "free (GB)",
           "groupBy": [
             {
@@ -323,7 +321,7 @@
           "orderByTime": "ASC",
           "policy": "default",
           "query": "SELECT mean(\"free\")  / 1000000000 FROM \"disk\" WHERE \"device\" = 'xvda1' AND $timeFilter GROUP BY time($interval) fill(none)",
-          "rawQuery": false,
+          "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
