@@ -1,0 +1,19 @@
+[
+  {
+    "name": "influxdb",
+    "type": "influxdb",
+    "typeLogoUrl": "public/app/plugins/datasource/influxdb/img/influxdb_logo.svg",
+    "access": "direct",
+    "url": "http://localhost:8086",
+    "password": "telegraf",
+    "user": "telegraf",
+    "database": "telegraf",
+    "basicAuth": false,
+    "isDefault": true,
+    "jsonData": {
+      "keepCookies": [],
+      "timeInterval": "2s"
+    },
+    "readOnly": false
+  }
+]
