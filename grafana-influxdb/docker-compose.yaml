@@ -26,8 +26,25 @@ services:
     container_name: grafana_container
     restart: always
     ports:
-      - 3003:3000
+      - 3000:3000
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin123
+      GF_SECURITY_ADMIN_PASSWORD: admin123
     depends_on:
       - influxdb_svc
+  python_alpine:
+    image: python:alpine
+    container_name: python_alpine_script_runner
+    environment:
+      GRAFANA_URL: http://grafana_svc:3000
+      GRAFANA_USER: admin
+      GRAFANA_PASS: admin123
+      INFLUXDB_URL: http://localhost:8086
+      DATASOURCE_DATA_FILE: datasources.json
+      DASHBOARD_DATA_FILES: basic-metrics.json
+    volumes:
+      - ./persistence/grafana:/tmp
+    depends_on:
+      - grafana_svc
+    links:
+      - grafana_svc
+    command: python /tmp/init-grafana.py
