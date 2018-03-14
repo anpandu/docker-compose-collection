@@ -28,7 +28,7 @@ services:
     networks:
       - net
   wordpress:
-    image: wordpress:4.9.4-php5.6-fpm-alpine
+    image: wordpress:4.9.4-php5.6-apache
     ports:
       - 8080:80
     volumes:
