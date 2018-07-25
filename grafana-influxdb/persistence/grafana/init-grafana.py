@@ -1,6 +1,7 @@
 import base64
 import json
 import os 
+import time
 import urllib.request
 
 class Config(object):
@@ -28,6 +29,8 @@ def post(url, username, password, json_data):
   response = urllib.request.urlopen(req, data)
   return response
 
+time.sleep(10)
+print('init grafana daatasources + dashboards')
 url = '%s/api/datasources' % (Config.GRAFANA_URL)
 data = read_json('json/%s' % (Config.DATASOURCE_DATA_FILE))
 for datum in data:

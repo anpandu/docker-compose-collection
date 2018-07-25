@@ -320,7 +320,7 @@
           "measurement": "cpu",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT mean(\"free\")  / 1000000000 FROM \"disk\" WHERE \"device\" = 'xvda1' AND $timeFilter GROUP BY time($interval) fill(none)",
+          "query": "SELECT mean(\"free\")  / 1000000000 FROM \"disk\" WHERE $timeFilter GROUP BY time($interval) fill(none)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
